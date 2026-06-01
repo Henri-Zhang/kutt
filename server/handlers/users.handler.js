@@ -24,7 +24,7 @@ async function remove(req, res) {
     utils.deleteCurrentToken(res);
     res.setHeader("HX-Trigger-After-Swap", "redirectToHomepage");
     res.render("partials/settings/delete_account", {
-      success: "Account has been deleted. Logging out..."
+      success: "账号已删除。正在退出登录..."
     });
     return;
   }
@@ -36,7 +36,7 @@ async function removeByAdmin(req, res) {
   const user = await query.user.find({ id: req.params.id });
 
   if (!user) {
-    const message = "Could not find the user.";
+    const message = "未找到该用户。";
     if (req.isHTML) {
       return res.render("partials/admin/dialog/message", {
         layout: false,
@@ -58,7 +58,7 @@ async function removeByAdmin(req, res) {
     return;
   }
   
-  return res.status(200).send({ message: "User has been deleted successfully." });
+  return res.status(200).send({ message: "用户已成功删除。" });
 };
 
 async function getAdmin(req, res) {
@@ -114,11 +114,11 @@ async function ban(req, res) {
   const user = await query.user.find({ id });
 
   if (!user) {
-    throw new CustomError("No user has been found.", 400);
+    throw new CustomError("未找到该用户。", 400);
   }
 
   if (user.banned) {
-    throw new CustomError("User has been banned already.", 400);
+    throw new CustomError("用户已被封禁。", 400);
   }
 
   const tasks = [];
@@ -138,7 +138,7 @@ async function ban(req, res) {
 
   // 5. wait for all tasks to finish
   await Promise.all(tasks).catch((err) => {
-    throw new CustomError("Couldn't ban entries.");
+    throw new CustomError("无法封禁相关条目。");
   });
 
   // 6. send response
@@ -151,7 +151,7 @@ async function ban(req, res) {
     return;
   }
 
-  return res.status(200).send({ message: "Banned user successfully." });
+  return res.status(200).send({ message: "用户已成功封禁。" });
 }
 
 async function create(req, res) {
@@ -172,7 +172,7 @@ async function create(req, res) {
     return;
   }
 
-  return res.status(201).send({ message: "The user has been created successfully." });
+  return res.status(201).send({ message: "用户已成功创建。" });
 }
 
 module.exports = {

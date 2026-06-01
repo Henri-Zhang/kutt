@@ -5,14 +5,14 @@
   <td class="domains-address right-fade">
     {{address}}
     <p class="description">
-      by&nbsp;
+      所有者&nbsp;
       {{~#if user_id~}}
-        <a 
-          aria-label="View user" 
-          data-tooltip="View user" 
+        <a
+          aria-label="查看用户"
+          data-tooltip="查看用户"
           hx-get="/api/users/admin"
           hx-target="closest table"
-          hx-swap="outerHTML" 
+          hx-swap="outerHTML"
           hx-sync="this:replace"
           hx-indicator="closest table"
           hx-vals='{"search":"{{email}}"}'
@@ -23,31 +23,31 @@
         {{#ifEquals @root.query.user email}}
         {{else}}
           &nbsp;(
-          <a 
-            aria-label="View domains" 
-            data-tooltip="View domains" 
+          <a
+            aria-label="查看域名"
+            data-tooltip="查看域名"
             hx-get="/api/domains/admin"
             hx-target="closest table"
-            hx-swap="outerHTML" 
+            hx-swap="outerHTML"
             hx-sync="this:replace"
             hx-indicator="closest table"
             hx-vals='{"user":"{{email}}"}'
           >
-            view domains
+            查看域名
           </a>)
         {{/ifEquals}}
       {{~else~}}
-        <a 
-          aria-label="View system domains" 
-          data-tooltip="View system domains" 
+        <a
+          aria-label="查看系统域名"
+          data-tooltip="查看系统域名"
           hx-get="/api/domains/admin"
           hx-target="closest table"
-          hx-swap="outerHTML" 
+          hx-swap="outerHTML"
           hx-sync="this:replace"
           hx-indicator="closest table"
           hx-vals='{"owner":"false"}'
         >
-          System
+          系统
         </a>
       {{~/if~}}
       &nbsp;{{~#if description~}}· {{description}}{{~/if}}
@@ -59,7 +59,7 @@
         {{homepage}}
       </a>
     {{else}}
-      No homepage
+      无主页
     {{/if}}
   </td>
   <td class="domains-created-at">
@@ -70,11 +70,11 @@
       {{links_count}}
     {{else}}
       <a
-        data-tooltip="View links"
-        aria-label="View links"
+        data-tooltip="查看链接"
+        aria-label="查看链接"
         hx-get="/api/links/admin"
         hx-target="closest table"
-        hx-swap="outerHTML" 
+        hx-swap="outerHTML"
         hx-sync="this:replace"
         hx-vals='{"domain":"{{address}}"}'
         hx-indicator="closest table"

@@ -4,60 +4,60 @@
     <th class="filters">
       <div>
         <div class="search-input-wrapper">
-          <input 
-            id="search" 
-            name="search" 
-            type="text" 
-            placeholder="Search link..." 
-            class="table-input search admin" 
-            hx-on:input="onSearchChange(event)" 
+          <input
+            id="search"
+            name="search"
+            type="text"
+            placeholder="搜索链接..."
+            class="table-input search admin"
+            hx-on:input="onSearchChange(event)"
             hx-on:keyup="resetTableNav()"
             value="{{query.search}}"
           />
-          <button 
-            type="button" 
-            aria-label="Clear search" 
-            class="clear" 
+          <button
+            type="button"
+            aria-label="清除搜索"
+            class="clear"
             onclick="clearSeachInput(event)"
           >
             {{> icons/x}}
           </button>
         </div>
         <div class="search-input-wrapper">
-          <input 
-            id="search_domain" 
-            name="domain" 
-            type="text" 
-            placeholder="Search domain..." 
-            class="table-input search admin" 
-            hx-on:input="onSearchChange(event)" 
+          <input
+            id="search_domain"
+            name="domain"
+            type="text"
+            placeholder="搜索域名..."
+            class="table-input search admin"
+            hx-on:input="onSearchChange(event)"
             hx-on:keyup="resetTableNav()"
             value="{{query.domain}}"
           />
-          <button 
-            type="button" 
-            aria-label="Clear user search" 
-            class="clear" 
+          <button
+            type="button"
+            aria-label="清除域名搜索"
+            class="clear"
             onclick="clearSeachInput(event)"
           >
             {{> icons/x}}
           </button>
         </div>
         <div class="search-input-wrapper">
-          <input 
-            id="search_user" 
-            name="user" 
-            type="text" 
-            placeholder="Search user..." 
-            class="table-input search admin" 
-            hx-on:input="onSearchChange(event)" 
+          <input
+            id="search_user"
+            name="user"
+            type="text"
+            placeholder="搜索用户..."
+            class="table-input search admin"
+            hx-on:input="onSearchChange(event)"
             hx-on:keyup="resetTableNav()"
             value="{{query.user}}"
           />
-          <button 
-            type="button" 
-            aria-label="Clear user search" 
-            class="clear" 
+          <button
+            type="button"
+            aria-label="清除用户搜索"
+            class="clear"
             onclick="clearSeachInput(event)"
           >
             {{> icons/x}}
@@ -65,35 +65,35 @@
         </div>
       </div>
       <div>
-        <select 
+        <select
           id="links-select-banned"
           name="banned"
           class="table-input ban"
           hx-on:change="resetTableNav()"
         >
-          <option value="" selected>Banned...</option>
-          <option value="true">Banned</option>
-          <option value="false">Not banned</option>
+          <option value="" selected>封禁状态...</option>
+          <option value="true">已封禁</option>
+          <option value="false">未封禁</option>
         </select>
-        <select 
+        <select
           id="links-select-anonymous"
           name="anonymous"
           class="table-input anonymous"
           hx-on:change="resetTableNav()"
         >
-          <option value="">Anonymous...</option>
-          <option value="true" {{#ifEquals query.anonymous 'true'}}selected{{/ifEquals}}>Anonymous</option>
-          <option value="false" {{#ifEquals query.anonymous 'false'}}selected{{/ifEquals}}>User</option>
+          <option value="">匿名状态...</option>
+          <option value="true" {{#ifEquals query.anonymous 'true'}}selected{{/ifEquals}}>匿名</option>
+          <option value="false" {{#ifEquals query.anonymous 'false'}}selected{{/ifEquals}}>用户</option>
         </select>
-        <select 
+        <select
           id="links-select-anonymous"
           name="has_domain"
           class="table-input has_domain"
           hx-on:change="resetTableNav()"
         >
-          <option value="">Domain...</option>
-          <option value="true" {{#ifEquals query.has_domain 'true'}}selected{{/ifEquals}}>With domain</option>
-          <option value="false" {{#ifEquals query.has_domain 'false'}}selected{{/ifEquals}}>No domain</option>
+          <option value="">域名...</option>
+          <option value="true" {{#ifEquals query.has_domain 'true'}}selected{{/ifEquals}}>有域名</option>
+          <option value="false" {{#ifEquals query.has_domain 'false'}}selected{{/ifEquals}}>无域名</option>
         </select>
         <input id="total" name="total" type="hidden" value="{{total}}" />
         <input id="limit" name="limit" type="hidden" value="10" />
@@ -103,10 +103,10 @@
     {{> admin/table_nav}}
   </tr>
   <tr>
-    <th class="original-url">Original URL</th>
-    <th class="created-at">Created at</th>
-    <th class="short-link">Short link</th>
-    <th class="views">Views</th>
+    <th class="original-url">原始链接</th>
+    <th class="created-at">创建时间</th>
+    <th class="short-link">短链接</th>
+    <th class="views">浏览量</th>
     <th class="actions"></th>
   </tr>
 </thead>

@@ -1,17 +1,17 @@
-module.exports.verifyMailText = `You're attempting to change your email address on {{site_name}}.
+module.exports.verifyMailText = `你正在尝试修改你在 {{site_name}} 上的邮箱地址。
 
-Please verify your email address using the link below.
+请使用以下链接验证你的邮箱地址。
 
 https://{{domain}}/verify/{{verification}}`;
 
-module.exports.changeEmailText = `Thanks for creating an account on {{site_name}}.
+module.exports.changeEmailText = `感谢你在 {{site_name}} 上创建账号。
 
-Please verify your email address using the link below.
+请使用以下链接验证你的邮箱地址。
 
 https://{{domain}}/verify-email/{{verification}}`;
 
-module.exports.resetMailText = `A password reset has been requested for your account.
+module.exports.resetMailText = `你的账号收到了重置密码的请求。
 
-Please click on the button below to reset your password. There's no need to take any action if you didn't request this.
+请点击以下链接重置密码。如果你没有发起此请求，无需采取任何操作。
 
 https://{{domain}}/reset-password/{{resetpassword}}`;

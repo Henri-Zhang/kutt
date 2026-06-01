@@ -1,16 +1,16 @@
 <footer>
   <p>
-    Powered by <a href="https://github.com/thedevs-network/kutt" title="The Devs" target="_blank" rel="noopener noreferrer">Kutt</a> <span>|</span> 
-    <a href="/terms" title="Terms of Service">Terms of Service</a>
+    由 <a href="https://studio.henri.ren/" title="Henri Studio" target="_blank" rel="noopener noreferrer">Henri Studio</a> <span>|</span> 
+    <a href="/terms" title="服务条款">服务条款</a>
     {{#if report_email}} 
      <span>|</span>
-     <a href="/report" title="Report abuse">Report Abuse</a>
+     <a href="/report" title="举报滥用">举报滥用</a>
     {{/if}}
     {{#if contact_email}}
       <span>|</span> 
       <button class="link" hx-get="/get-support-email" hx-swap="outerHTML">
         <span>{{> icons/spinner}}</span>
-        Contact us
+        联系我们
       </button>
     {{/if}}
   </p>

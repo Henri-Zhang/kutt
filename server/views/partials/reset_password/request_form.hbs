@@ -4,26 +4,26 @@
   hx-post="/api/auth/reset-password"
   hx-sync="this:abort"
   hx-swap="outerHTML"
-> 
+>
   {{#if message}}
     <p class="success">{{message}}</p>
   {{else}}
     <div class="inputs-wrapper">
       <label>
-        Email address:
-        <input 
-          id="reset-password-email" 
-          name="email" 
-          type="email" 
-          placeholder="Email address..."
+        Email 地址：
+        <input
+          id="reset-password-email"
+          name="email"
+          type="email"
+          placeholder="请输入 Email 地址..."
           hx-preserve="true"
           class="{{#if errors.email}}error{{/if}}"
-          required 
+          required
         />
       </label>
       <button type="submit" class="primary">
         <span>{{> icons/spinner}}</span>
-        Reset password
+        重置密码
       </button>
     </div>
     {{#if error}}<p class="error">{{error}}</p>{{/if}}

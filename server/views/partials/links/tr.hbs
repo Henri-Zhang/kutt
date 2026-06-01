@@ -13,14 +13,14 @@
     {{relative_created_at}}
     {{#if relative_expire_in}}
       <p class="description">
-        Expires in {{relative_expire_in}}
+        {{relative_expire_in}} 后过期
       </p>
     {{/if}}
   </td>
   <td class="short-link right-fade">
     <div class="clipboard small">
-      <button 
-        aria-label="Copy" 
+      <button
+        aria-label="复制"
         hx-on:click="handleShortURLCopyLink(this);"
         data-url="{{link.url}}"
       >

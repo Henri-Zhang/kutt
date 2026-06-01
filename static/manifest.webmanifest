@@ -1,10 +1,10 @@
 {
-  "name": "Kutt",
-  "short_name": "Kutt",
-  "theme_color": "#f3f3f3",
-  "background_color": "#f3f3f3",
+  "name": "葱花短链",
+  "short_name": "葱花短链",
+  "theme_color": "#2da06b",
+  "background_color": "#f3faf6",
   "display": "standalone",
-  "description": "Kutt.to is a free and open source URL shortener with custom domains and stats.",
+  "description": "葱花短链是一个免费开源的短链接服务，支持自定义域名和统计功能。",
   "Scope": "/",
   "start_url": "/",
   "icons": [

@@ -1,6 +1,6 @@
 <div id="report-email">
   {{#unless report_email_address}}
-    <button 
+    <button
       class="link"
       hx-get="/get-report-email"
       hx-sync="this:abort"
@@ -9,7 +9,7 @@
     >
       <span class="eye-icon">{{> icons/eye}}</span>
       <span>{{> icons/spinner}}</span>
-      show email address
+      显示邮箱地址
     </button>
   {{else}}
     {{report_email_address}}

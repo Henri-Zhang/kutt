@@ -1,24 +1,24 @@
 <form id="login-signup" hx-post="/api/auth/login" hx-swap="outerHTML">
   {{#unless disallow_login_form}}
     <label class="{{#if errors.email}}error{{/if}}">
-      Email address:
+      Email 地址：
       <input
         name="email"
         id="email"
         type="email"
         autofocus="true"
-        placeholder="Email address..."
+        placeholder="请输入 Email 地址..."
         hx-preserve="true"
       />
       {{#if errors.email}}<p class="error">{{errors.email}}</p>{{/if}}
     </label>
     <label class="{{#if errors.password}}error{{/if}}">
-      Password:
+      密码：
       <input
         name="password"
         id="password"
         type="password"
-        placeholder="Password..."
+        placeholder="请输入密码..."
         hx-preserve="true"
       />
       {{#if errors.password}}<p class="error">{{errors.password}}</p>{{/if}}
@@ -30,7 +30,7 @@
       >
         <span>{{> icons/login}}</span>
         <span>{{> icons/spinner}}</span>
-        Log in
+        登录
       </button>
       {{#unless disallow_registration}}
         {{#if mail_enabled}}
@@ -48,7 +48,7 @@
           >
               <span>{{> icons/new_user}}</span>
               <span>{{> icons/spinner}}</span>
-              Sign up
+              注册
           </button>
         {{/if}}
       {{/unless}}
@@ -56,15 +56,15 @@
   {{/unless}}
   {{#if oidc_enabled}}
     <div class="buttons-wrapper">
-      <a class="button secondary full" href="/login/oidc" title="Login with OIDC">
+      <a class="button secondary full" href="/login/oidc" title="使用 OIDC 登录">
         <span>{{> icons/key}}</span>
-        Login with OIDC
+        使用 OIDC 登录
       </a>
     </div>
   {{/if}}
   {{#unless disallow_login_form}}
     {{#if mail_enabled}}
-      <a class="forgot-password" href="/reset-password" title="Reset password">Forgot your password?</a>
+      <a class="forgot-password" href="/reset-password" title="重置密码">忘记密码？</a>
     {{/if}}
   {{/unless}}
   {{#unless errors}}

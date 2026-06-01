@@ -45,7 +45,7 @@ async function addAdmin(req, res) {
     return;
   }
   
-  return res.status(200).send({ message: "The domain has been added successfully." });
+  return res.status(200).send({ message: "域名已成功添加。" });
 };
 
 async function remove(req, res) {
@@ -55,7 +55,7 @@ async function remove(req, res) {
   });
 
   if (!domain) {
-    throw new CustomError("Could not delete the domain.", 400);
+    throw new CustomError("无法删除该域名。", 400);
   }
   
   const [updatedDomain] = await query.domain.update(
@@ -64,7 +64,7 @@ async function remove(req, res) {
   );
 
   if (!updatedDomain) {
-    throw new CustomError("Could not delete the domain.", 500);
+    throw new CustomError("无法删除该域名。", 500);
   }
 
   if (env.REDIS_ENABLED) {
@@ -81,7 +81,7 @@ async function remove(req, res) {
     return;
   }
 
-  return res.status(200).send({ message: "Domain deleted successfully" });
+  return res.status(200).send({ message: "域名已成功删除" });
 };
 
 async function removeAdmin(req, res) {
@@ -91,7 +91,7 @@ async function removeAdmin(req, res) {
   const domain = await query.domain.find({ id });
 
   if (!domain) {
-    throw new CustomError("Could not find the domain.", 400);
+    throw new CustomError("未找到该域名。", 400);
   }
 
   if (links) {
@@ -109,7 +109,7 @@ async function removeAdmin(req, res) {
     return;
   }
 
-  return res.status(200).send({ message: "Domain deleted successfully" });
+  return res.status(200).send({ message: "域名已成功删除" });
 }
 
 async function getAdmin(req, res) {
@@ -163,11 +163,11 @@ async function ban(req, res) {
   const domain = await query.domain.find({ id });
 
   if (!domain) {
-    throw new CustomError("No domain has been found.", 400);
+    throw new CustomError("未找到该域名。", 400);
   }
 
   if (domain.banned) {
-    throw new CustomError("Domain has been banned already.", 400);
+    throw new CustomError("域名已被封禁。", 400);
   }
 
   const tasks = [];
@@ -187,7 +187,7 @@ async function ban(req, res) {
   
   // 5. wait for all tasks to finish
   await Promise.all(tasks).catch((err) => {
-    throw new CustomError("Couldn't ban entries.");
+    throw new CustomError("无法封禁相关条目。");
   });
 
   // 6. send response
@@ -200,7 +200,7 @@ async function ban(req, res) {
     return;
   }
 
-  return res.status(200).send({ message: "Banned domain successfully." });
+  return res.status(200).send({ message: "域名已成功封禁。" });
 }
 
 module.exports = {

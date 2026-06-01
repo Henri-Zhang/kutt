@@ -22,7 +22,7 @@ function authenticate(type, error, isStrict, redirect) {
         (err || info instanceof Error) &&
         type === "oidc"
       ) {
-        return next(new CustomError("OIDC authentication failed.", 401));
+        return next(new CustomError("OIDC 认证失败。", 401));
       };
 
       if (err) return next(err);
@@ -50,12 +50,11 @@ function authenticate(type, error, isStrict, redirect) {
       }
 
       if (user && user.banned) {
-        throw new CustomError("You're banned from using this website.", 403);
+        throw new CustomError("你已被禁止使用本站。", 403);
       }
 
       if (user && isStrict && !user.verified) {
-        throw new CustomError("Your email address is not verified. " +
-          "Sign up to get the verification link again.", 400);
+        throw new CustomError("你的邮箱地址尚未验证。请重新注册以获取验证链接。", 400);
       }
 
       if (user) {
@@ -81,17 +80,17 @@ function authenticate(type, error, isStrict, redirect) {
   }
 }
 
-const local = authenticate("local", "Login credentials are wrong.", true, null);
-const jwt = authenticate("jwt", "Unauthorized.", true, "header");
-const jwtPage = authenticate("jwt", "Unauthorized.", true, "page");
-const jwtLoose = authenticate("jwt", "Unauthorized.", false, "header");
-const jwtLoosePage = authenticate("jwt", "Unauthorized.", false, "page");
-const apikey = authenticate("localapikey", "API key is not correct.", false, null);
-const oidc = authenticate("oidc", "Unauthorized", true, "page");
+const local = authenticate("local", "登录凭据错误。", true, null);
+const jwt = authenticate("jwt", "未授权。", true, "header");
+const jwtPage = authenticate("jwt", "未授权。", true, "page");
+const jwtLoose = authenticate("jwt", "未授权。", false, "header");
+const jwtLoosePage = authenticate("jwt", "未授权。", false, "page");
+const apikey = authenticate("localapikey", "API 密钥不正确。", false, null);
+const oidc = authenticate("oidc", "未授权", true, "page");
 
 function admin(req, res, next) {
   if (req.user.admin) return next();
-  throw new CustomError("Unauthorized", 401);
+  throw new CustomError("未授权", 401);
 }
 
 async function signup(req, res) {
@@ -110,13 +109,13 @@ async function signup(req, res) {
     return;
   }
   
-  return res.status(201).send({ message: "A verification email has been sent." });
+  return res.status(201).send({ message: "验证邮件已发送。" });
 }
 
 async function createAdminUser(req, res) {
   const isThereAUser = await query.user.findAny();
   if (isThereAUser) {
-    throw new CustomError("Can not create the admin user because a user already exists.", 400);
+    throw new CustomError("无法创建管理员账号，因为已存在用户。", 400);
   }
   
   const salt = await bcrypt.genSalt(12);
@@ -181,7 +180,7 @@ async function verify(req, res, next) {
 async function changePassword(req, res) {
   const isMatch = await bcrypt.compare(req.body.currentpassword, req.user.password);
   if (!isMatch) {
-    const message = "Current password is not correct.";
+    const message = "当前密码不正确。";
     res.locals.errors = { currentpassword: message };
     throw new CustomError(message, 401);
   }
@@ -192,20 +191,20 @@ async function changePassword(req, res) {
   const user = await query.user.update({ id: req.user.id }, { password: newpassword });
   
   if (!user) {
-    throw new CustomError("Couldn't change the password. Try again later.");
+    throw new CustomError("无法修改密码，请稍后重试。");
   }
 
   if (req.isHTML) {
     res.setHeader("HX-Trigger-After-Swap", "resetChangePasswordForm");
     res.render("partials/settings/change_password", {
-      success: "Password has been changed."
+      success: "密码已修改。"
     });
     return;
   }
   
   return res
     .status(200)
-    .send({ message: "Your password has been changed successfully." });
+    .send({ message: "密码已成功修改。" });
 }
 
 async function generateApiKey(req, res) {
@@ -218,7 +217,7 @@ async function generateApiKey(req, res) {
   const user = await query.user.update({ id: req.user.id }, { apikey });
   
   if (!user) {
-    throw new CustomError("Couldn't generate API key. Please try again later.");
+    throw new CustomError("无法生成 API 密钥，请稍后重试。");
   }
 
   if (req.isHTML) {
@@ -248,13 +247,13 @@ async function resetPassword(req, res) {
 
   if (req.isHTML) {
     res.render("partials/reset_password/request_form", {
-      message: "If the email address exists, a reset password email will be sent to it."
+      message: "如果该邮箱地址存在，重置密码邮件将发送至该邮箱。"
     });
     return;
   }
   
   return res.status(200).send({
-    message: "If email address exists, a reset password email has been sent."
+    message: "如果邮箱地址存在，重置密码邮件已发送。"
   });
 }
 
@@ -277,7 +276,7 @@ async function newPassword(req, res) {
   );
 
   if (!user) {
-    throw new CustomError("Could not set the password. Please try again later.");
+    throw new CustomError("无法设置密码，请稍后重试。");
   }
 
   res.render("partials/reset_password/new_password_success");
@@ -289,7 +288,7 @@ async function changeEmailRequest(req, res) {
   const isMatch = await bcrypt.compare(password, req.user.password);
   
   if (!isMatch) {
-    const error = "Password is not correct.";
+    const error = "密码不正确。";
     res.locals.errors = { password: error };
     throw new CustomError(error, 401);
   }
@@ -297,7 +296,7 @@ async function changeEmailRequest(req, res) {
   const user = await query.user.find({ email });
   
   if (user) {
-    const error = "Can't use this email address.";
+    const error = "不能使用此邮箱地址。";
     res.locals.errors = { email: error };
     throw new CustomError(error, 400);
   }
@@ -315,7 +314,7 @@ async function changeEmailRequest(req, res) {
     await mail.changeEmail({ ...updatedUser, email });
   }
 
-  const message = "A verification link has been sent to the requested email address."
+  const message = "验证链接已发送到请求的邮箱地址。"
   
   if (req.isHTML) {
     res.setHeader("HX-Trigger-After-Swap", "resetChangeEmailForm");
@@ -367,7 +366,7 @@ function featureAccess(features, redirect) {
         if (redirect) {
           return res.redirect("/");
         } else {
-          throw new CustomError("Request is not allowed.", 400);
+          throw new CustomError("请求不被允许。", 400);
         }
       } 
     }

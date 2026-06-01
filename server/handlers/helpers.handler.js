@@ -14,7 +14,7 @@ function error(error, req, res, _next) {
     console.error(error.message);
   }
 
-  const message = error instanceof CustomError ? error.message : "An error occurred.";
+  const message = error instanceof CustomError ? error.message : "发生了一个错误。";
   const statusCode = error.statusCode ?? 500;
 
   if (req.isHTML && req.viewTemplate) {
@@ -25,7 +25,7 @@ function error(error, req, res, _next) {
 
   if (req.isHTML) {
     res.render("error", {
-      message: "An error occurred. Please try again later."
+      message: "发生了一个错误，请稍后重试。"
     });
     return;
   }
@@ -58,21 +58,21 @@ function parseQuery(req, res, next) {
     typeof req.query.limit !== "undefined" &&
     typeof req.query.limit !== "string"
   ) {
-    return res.status(400).json({ error: "limit query is not valid." });
+    return res.status(400).json({ error: "limit 参数无效。" });
   }
 
   if (
     typeof req.query.skip !== "undefined" &&
     typeof req.query.skip !== "string"
   ) {
-    return res.status(400).json({ error: "skip query is not valid." });
+    return res.status(400).json({ error: "skip 参数无效。" });
   }
 
   if (
     typeof req.query.search !== "undefined" &&
     typeof req.query.search !== "string"
   ) {
-    return res.status(400).json({ error: "search query is not valid." });
+    return res.status(400).json({ error: "search 参数无效。" });
   }
 
   const limit = parseInt(req.query.limit) || 10;

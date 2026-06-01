@@ -4,7 +4,7 @@
       <div class="clipboard">
         <button 
           type="button"
-          aria-label="Copy" 
+          aria-label="复制" 
           hx-on:click="handleShortURLCopyLink(this);" 
           data-url="{{url}}"
         >
@@ -21,7 +21,7 @@
       </h1>
     {{/if}}
     {{#unless link}}
-        <h1>Cut your links <span>shorter</span>.</h1>
+        <h1>让链接更<span>简短</span>。</h1>
     {{/unless}}
   </div>
   <form 
@@ -37,8 +37,8 @@
         id="target"
         name="target"
         type="text"
-        placeholder="Paste your long URL"
-        aria-label="target"
+        placeholder="粘贴你的长链接"
+        aria-label="目标链接"
         autofocus="true"
         data-lpignore="true"
         hx-preserve="true"
@@ -61,12 +61,12 @@
         hx-on:change="htmx.toggleClass('#advanced-options', 'hidden')"
         {{#if show_advanced}}checked="true"{{/if}}
       />
-      Show advanced options
+      显示高级选项
     </label>
     <section id="advanced-options" class="{{#unless show_advanced}}hidden{{/unless}}">
       <div class="advanced-input-wrapper">
         <label class="{{#if errors.domain}}error{{/if}}">
-          Domain:
+          域名：
           <select 
             id="domain" 
             name="domain" 
@@ -90,19 +90,19 @@
             type="text" 
             id="customurl" 
             name="customurl" 
-            placeholder="Custom address..." 
+            placeholder="自定义地址..." 
             hx-preserve="true"
             autocomplete="off" 
           />
           {{#if errors.customurl}}<p class="error">{{errors.customurl}}</p>{{/if}}
         </label>
         <label class="{{#if errors.password}}error{{/if}}">
-          Password:
+          密码：
           <input 
             type="password" 
             id="password" 
             name="password" 
-            placeholder="Password..." 
+            placeholder="设置访问密码..." 
             hx-preserve="true" 
             autocomplete="new-password"
           />
@@ -111,23 +111,23 @@
       </div>
       <div class="advanced-input-wrapper">
         <label class="expire-in {{#if errors.expire_in}}error{{/if}}">
-          Expire in:
+          过期时间：
           <input 
             type="text" 
             id="expire_in" 
             name="expire_in" 
-            placeholder="2 minutes/hours/days" 
+            placeholder="2 分钟/小时/天" 
             hx-preserve="true" 
           />
           {{#if errors.expire_in}}<p class="error">{{errors.expire_in}}</p>{{/if}}
         </label>
         <label class="description {{#if errors.description}}error{{/if}}">
-          Description:
+          描述：
           <input 
             type="text" 
             id="description" 
             name="description" 
-            placeholder="Description..." 
+            placeholder="添加描述..." 
             hx-preserve="true" 
           />
           {{#if errors.description}}<p class="error">{{errors.description}}</p>{{/if}}

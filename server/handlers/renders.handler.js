@@ -14,7 +14,7 @@ async function homepage(req, res) {
     return;
   }
   res.render("homepage", {
-    title: "Free modern URL shortener",
+    title: "免费现代化短链接服务",
   });
 }
 
@@ -25,14 +25,14 @@ async function login(req, res) {
   }
   
   res.render("login", {
-    title: "Log in or sign up"
+    title: "登录或注册"
   });
 }
 
 function logout(req, res) {
   utils.deleteCurrentToken(res);
   res.render("logout", {
-    title: "Logging out.."
+    title: "正在退出登录.."
   });
 }
 
@@ -43,37 +43,37 @@ async function createAdmin(req, res) {
     return;
   }
   res.render("create_admin", {
-    title: "Create admin account"
+    title: "创建管理员账号"
   });
 }
 
 function notFound(req, res) {
   res.render("404", {
-    title: "404 - Not found"
+    title: "404 - 未找到"
   });
 }
 
 function settings(req, res) {
   res.render("settings", {
-    title: "Settings"
+    title: "设置"
   });
 }
 
 function admin(req, res) {
   res.render("admin", {
-    title: "Admin"
+    title: "管理"
   });
 }
 
 function stats(req, res) {
   res.render("stats", {
-    title: "Stats"
+    title: "统计"
   });
 }
 
 async function banned(req, res) {
   res.render("banned", {
-    title: "Banned link",
+    title: "已封禁链接",
   });
 }
 
@@ -83,13 +83,13 @@ async function report(req, res) {
     return;
   }
   res.render("report", {
-    title: "Report abuse",
+    title: "举报滥用",
   });
 }
 
 async function resetPassword(req, res) {
   res.render("reset_password", {
-    title: "Reset password",
+    title: "重置密码",
   });
 }
 
@@ -110,26 +110,26 @@ async function resetPasswordSetNewPassword(req, res) {
 
   
   res.render("reset_password_set_new_password", {
-    title: "Reset password",
+    title: "重置密码",
     ...(res.locals.token_verified && { reset_password_token }),
   });
 }
 
 async function verifyChangeEmail(req, res) {
   res.render("verify_change_email", {
-    title: "Verifying email",
+    title: "验证邮箱",
   });
 }
 
 async function verify(req, res) {
   res.render("verify", {
-    title: "Verify",
+    title: "验证",
   });
 }
 
 async function terms(req, res) {
   res.render("terms", {
-    title: "Terms of Service",
+    title: "服务条款",
   });
 }
 
@@ -147,7 +147,7 @@ async function confirmLinkDelete(req, res) {
   if (!link) {
     return res.render("partials/links/dialog/message", {
       layout: false,
-      message: "Could not find the link."
+      message: "未找到该链接。"
     });
   }
   res.render("partials/links/dialog/delete", {
@@ -164,7 +164,7 @@ async function confirmLinkBan(req, res) {
   });
   if (!link) {
     return res.render("partials/links/dialog/message", {
-      message: "Could not find the link."
+      message: "未找到该链接。"
     });
   }
   res.render("partials/links/dialog/ban", {
@@ -178,7 +178,7 @@ async function confirmUserDelete(req, res) {
   if (!user) {
     return res.render("partials/admin/dialog/message", {
       layout: false,
-      message: "Could not find the user."
+      message: "未找到该用户。"
     });
   }
   res.render("partials/admin/dialog/delete_user", {
@@ -193,7 +193,7 @@ async function confirmUserBan(req, res) {
   if (!user) {
     return res.render("partials/admin/dialog/message", {
       layout: false,
-      message: "Could not find the user."
+      message: "未找到该用户。"
     });
   }
   res.render("partials/admin/dialog/ban_user", {
@@ -225,7 +225,7 @@ async function confirmDomainDelete(req, res) {
     user_id: req.user.id
   });
   if (!domain) {
-    throw new utils.CustomError("Could not find the domain.", 400);
+    throw new utils.CustomError("未找到该域名。", 400);
   }
   res.render("partials/settings/domain/delete", {
     ...utils.sanitize.domain(domain)
@@ -237,7 +237,7 @@ async function confirmDomainBan(req, res) {
     id: req.query.id
   });
   if (!domain) {
-    throw new utils.CustomError("Could not find the domain.", 400);
+    throw new utils.CustomError("未找到该域名。", 400);
   }
   const hasUser = !!domain.user_id;
   const hasLink = await query.link.find({ domain_id: domain.id });
@@ -254,7 +254,7 @@ async function confirmDomainDeleteAdmin(req, res) {
     id: req.query.id
   });
   if (!domain) {
-    throw new utils.CustomError("Could not find the domain.", 400);
+    throw new utils.CustomError("未找到该域名。", 400);
   }
   const hasLink = await query.link.find({ domain_id: domain.id });
   res.render("partials/admin/dialog/delete_domain", {
@@ -266,7 +266,7 @@ async function confirmDomainDeleteAdmin(req, res) {
 
 async function getReportEmail(req, res) {
   if (!env.REPORT_EMAIL) {
-    throw new utils.CustomError("No report email is available.", 400);
+    throw new utils.CustomError("未设置举报邮箱。", 400);
   }
   res.render("partials/report/email", {
     report_email_address: env.REPORT_EMAIL.replace("@", "[at]")
@@ -275,7 +275,7 @@ async function getReportEmail(req, res) {
 
 async function getSupportEmail(req, res) {
   if (!env.CONTACT_EMAIL) {
-    throw new utils.CustomError("No support email is available.", 400);
+    throw new utils.CustomError("未设置支持邮箱。", 400);
   }
   await utils.sleep(500);
   res.render("partials/support_email", {

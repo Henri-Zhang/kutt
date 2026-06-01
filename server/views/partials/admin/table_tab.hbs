@@ -1,17 +1,17 @@
 <tr class="category">
   <th class="category-total">
     <p id="category-total">
-      Total {{title}}: <b>{{#if total includeZero=true}}{{total_formatted}}{{else}}-{{/if}}</b>
+      {{#ifEquals title 'links'}}链接{{/ifEquals}}{{#ifEquals title 'users'}}用户{{/ifEquals}}{{#ifEquals title 'domains'}}域名{{/ifEquals}} 总数：<b>{{#if total includeZero=true}}{{total_formatted}}{{else}}-{{/if}}</b>
     </p>
   </th>
   <th class="category-tab">
     <nav class="tab" role="tablist">
-      <a 
-        id="tab-links" 
-        role="tab" 
+      <a
+        id="tab-links"
+        role="tab"
         hx-get="/api/links/admin"
         hx-target="closest table"
-        hx-swap="outerHTML" 
+        hx-swap="outerHTML"
         hx-disinherit="*"
         hx-sync="this:replace"
         hx-indicator="closest table"
@@ -21,14 +21,14 @@
           hx-on:htmx:before-request="event.preventDefault()"
         {{/ifEquals}}
       >
-        Links
+        链接
       </a>
-      <a 
-        id="tab-users" 
-        role="tab" 
+      <a
+        id="tab-users"
+        role="tab"
         hx-get="/api/users/admin"
         hx-target="closest table"
-        hx-swap="outerHTML" 
+        hx-swap="outerHTML"
         hx-disinherit="*"
         hx-sync="this:replace"
         hx-indicator="closest table"
@@ -38,14 +38,14 @@
           hx-on:htmx:before-request="event.preventDefault()"
         {{/ifEquals}}
       >
-        Users
+        用户
       </a>
-       <a 
-        id="tab-domains" 
-        role="tab" 
+       <a
+        id="tab-domains"
+        role="tab"
         hx-get="/api/domains/admin"
         hx-target="closest table"
-        hx-swap="outerHTML" 
+        hx-swap="outerHTML"
         hx-disinherit="*"
         hx-sync="this:replace"
         hx-indicator="closest table"
@@ -55,7 +55,7 @@
           hx-on:htmx:before-request="event.preventDefault()"
         {{/ifEquals}}
       >
-        Domains
+        域名
       </a>
     </nav>
   </th>

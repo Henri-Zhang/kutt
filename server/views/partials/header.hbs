@@ -1,10 +1,10 @@
 <header>
   <div class="logo-wrapper">
-    <a class="logo nav" href="/" title="Homepage">
-      <img src="/images/logo.png" alt="kutt" width="18" height="24" />
+    <a class="logo nav" href="/" title="首页">
+      <img src="/images/logo.png" alt="葱花短链" width="18" height="24" />
       {{site_name}}
     </a>
-    <ul class="logo-links">
+    {{!-- <ul class="logo-links">
       <li>
         <a class="nav" href="https://github.com/thedevs-network/kutt" target="_blank" rel="noopener noreferrer" title="GitHub">
           GitHub
@@ -12,42 +12,42 @@
       </li>
       {{#if report_email}}
         <li>
-          <a class="nav" href="/report" title="Report abuse">
-            Report
+          <a class="nav" href="/report" title="举报滥用">
+            举报
           </a>
         </li>
       {{/if}}
-    </ul>
+    </ul> --}}
   </div>
   <nav>
     <ul>
       {{#unless user}}
         {{#unless login_disabled}}
           <li>
-            <a class="button primary" href="/login" title="Log in or sign up">
-              Log in / Sign up
+            <a class="button primary" href="/login" title="登录或注册">
+              登录 / 注册
             </a>
           </li>
         {{/unless}}
       {{/unless}}
       {{#if user}}
         <li>
-          <a class="button primary" href="/settings" title="Settings">
+          <a class="button primary" href="/settings" title="设置">
             <span>{{> icons/cog}}</span>
-            Settings
+            设置
           </a>
         </li>
         {{#if isAdmin}}
           <li>
-            <a class="button secondary" href="/admin" title="Admin">
+            <a class="button secondary" href="/admin" title="管理">
               <span>{{> icons/shield}}</span>
-              Admin
+              管理
             </a>
           </li>
         {{/if}}
         <li>
-          <a class="nav" href="/logout" title="Log out">
-            Log out
+          <a class="nav" href="/logout" title="退出登录">
+            退出登录
           </a>
         </li>
       {{/if}}

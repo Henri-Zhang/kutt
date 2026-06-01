@@ -1,9 +1,9 @@
 <section id="change-email-wrapper">
   <h2>
-    Change email
+    修改邮箱
   </h2>
-  <p>Enter your password and a new email address to change your email address.</p>
-  <form 
+  <p>输入密码和新的邮箱地址以更改邮箱。</p>
+  <form
     id="change-email"
     hx-post="/api/auth/change-email"
     hx-select="form"
@@ -12,23 +12,23 @@
   >
     <div class="inputs">
       <label class="{{#if errors.password}}error{{/if}}">
-        Passwod:
-        <input 
-          id="password-for-change-email" 
-          name="password" 
-          type="password" 
-          placeholder="Password..."
+        密码：
+        <input
+          id="password-for-change-email"
+          name="password"
+          type="password"
+          placeholder="密码..."
           hx-preserve="true"
         />
         {{#if errors.password}}<p class="error">{{errors.password}}</p>{{/if}}
       </label>
       <label class="{{#if errors.email}}error{{/if}}">
-        New email address:
-        <input 
-          id="email-for-change-email" 
-          name="email" 
-          type="email" 
-          placeholder="john@example.com"
+        新邮箱地址：
+        <input
+          id="email-for-change-email"
+          name="email"
+          type="email"
+          placeholder="your@example.com"
           hx-preserve="true"
         />
         {{#if errors.email}}<p class="error">{{errors.email}}</p>{{/if}}
@@ -37,7 +37,7 @@
     <button type="submit" class="primary">
       <span>{{> icons/reload}}</span>
       <span>{{> icons/spinner}}</span>
-      Update
+      更新邮箱
     </button>
     {{#if error}}
       {{#unless errors}}

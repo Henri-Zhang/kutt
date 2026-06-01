@@ -127,7 +127,7 @@ async function create(req, res) {
   
   // Check if custom link already exists
   if (tasks[1]) {
-    const error = "Custom URL is already in use.";
+    const error = "自定义 URL 已被使用。";
     res.locals.errors = { customurl: error };
     throw new CustomError(error);
   }
@@ -167,7 +167,7 @@ async function edit(req, res) {
   });
 
   if (!link) {
-    throw new CustomError("Link was not found.");
+    throw new CustomError("链接未找到。");
   }
 
   let isChanged = false;
@@ -202,7 +202,7 @@ async function edit(req, res) {
   });
 
   if (!isChanged) {
-    throw new CustomError("Should at least update one field.");
+    throw new CustomError("至少需要更新一个字段。");
   }
 
   const { address, target, description, expire_in, password } = req.body;
@@ -222,9 +222,9 @@ async function edit(req, res) {
 
   // Check if custom link already exists
   if (tasks[0]) {
-    const error = "Custom URL is already in use.";
+    const error = "自定义 URL 已被使用。";
     res.locals.errors = { address: error };
-    throw new CustomError("Custom URL is already in use.");
+    throw new CustomError("自定义 URL 已被使用。");
   }
 
   // Update link
@@ -244,7 +244,7 @@ async function edit(req, res) {
   if (req.isHTML) {
     res.render("partials/links/edit", {
       swap_oob: true,
-      success: "Link has been updated.",
+      success: "链接已更新。",
       ...utils.sanitize.link_html({ ...updatedLink }),
     });
     return;
@@ -260,7 +260,7 @@ async function editAdmin(req, res) {
   });
 
   if (!link) {
-    throw new CustomError("Link was not found.");
+    throw new CustomError("链接未找到。");
   }
 
   let isChanged = false;
@@ -295,7 +295,7 @@ async function editAdmin(req, res) {
   });
 
   if (!isChanged) {
-    throw new CustomError("Should at least update one field.");
+    throw new CustomError("至少需要更新一个字段。");
   }
 
   const { address, target, description, expire_in, password } = req.body;
@@ -315,9 +315,9 @@ async function editAdmin(req, res) {
 
   // Check if custom link already exists
   if (tasks[0]) {
-    const error = "Custom URL is already in use.";
+    const error = "自定义 URL 已被使用。";
     res.locals.errors = { address: error };
-    throw new CustomError("Custom URL is already in use.");
+    throw new CustomError("自定义 URL 已被使用。");
   }
 
   // Update link
@@ -337,7 +337,7 @@ async function editAdmin(req, res) {
   if (req.isHTML) {
     res.render("partials/admin/links/edit", {
       swap_oob: true,
-      success: "Link has been updated.",
+      success: "链接已更新。",
       ...utils.sanitize.link_admin({ ...updatedLink }),
     });
     return;
@@ -368,7 +368,7 @@ async function remove(req, res) {
 
   return res
     .status(200)
-    .send({ message: "Link has been deleted successfully." });
+    .send({ message: "链接已成功删除。" });
 };
 
 async function report(req, res) {
@@ -378,14 +378,14 @@ async function report(req, res) {
 
   if (req.isHTML) {
     res.render("partials/report/form", {
-      message: "Report was received. We'll take actions shortly."
+      message: "举报已收到，我们将尽快处理。"
     });
     return;
   }
   
   return res
     .status(200)
-    .send({ message: "Thanks for the report, we'll take actions shortly." });
+    .send({ message: "感谢举报，我们将尽快处理。" });
 };
 
 async function ban(req, res) {
@@ -400,11 +400,11 @@ async function ban(req, res) {
   const link = await query.link.find({ uuid: id });
 
   if (!link) {
-    throw new CustomError("No link has been found.", 400);
+    throw new CustomError("未找到该链接。", 400);
   }
 
   if (link.banned) {
-    throw new CustomError("Link has been banned already.", 400);
+    throw new CustomError("链接已被封禁。", 400);
   }
 
   const tasks = [];
@@ -422,7 +422,7 @@ async function ban(req, res) {
   // 4. ban target's host
   if (req.body.host) {
     const dnsRes = await dnsLookup(domain).catch(() => {
-      throw new CustomError("Couldn't fetch DNS info.");
+      throw new CustomError("无法获取 DNS 信息。");
     });
     const host = dnsRes?.address;
     tasks.push(query.host.add({ ...update, address: host }));
@@ -440,7 +440,7 @@ async function ban(req, res) {
 
   // 7. wait for all tasks to finish
   await Promise.all(tasks).catch((err) => {
-    throw new CustomError("Couldn't ban entries.");
+    throw new CustomError("无法封禁相关条目。");
   });
 
   // 8. send response
@@ -453,7 +453,7 @@ async function ban(req, res) {
     return;
   }
 
-  return res.status(200).send({ message: "Banned link successfully." });
+  return res.status(200).send({ message: "链接已成功封禁。" });
 };
 
 async function redirect(req, res, next) {
@@ -493,7 +493,7 @@ async function redirect(req, res, next) {
   if (isRequestingInfo && !link.password) {
     if (req.isHTML) {
       res.render("url_info", { 
-        title: "Short link information",
+        title: "短链接信息",
         target: link.target,
         link: utils.getShortURL(link.address, link.domain).link
       });
@@ -522,7 +522,7 @@ async function redirect(req, res, next) {
       }
     }
     res.render("protected", {
-      title: "Protected short link",
+      title: "受密码保护的短链接",
       id: link.uuid
     });
     return;
@@ -551,14 +551,14 @@ async function redirectProtected(req, res) {
 
   // 2. Throw error if no link
   if (!link || !link.password) {
-    throw new CustomError("Couldn't find the link.", 400);
+    throw new CustomError("未找到该链接。", 400);
   }
 
   // 3. Check if password matches
   const matches = await bcrypt.compare(req.body.password, link.password);
 
   if (!matches) {
-    throw new CustomError("Password is not correct.", 401);
+    throw new CustomError("密码不正确。", 401);
   }
 
   // 4. Create visit
@@ -577,7 +577,7 @@ async function redirectProtected(req, res) {
     res.setHeader("HX-Redirect", link.target);
     res.render("partials/protected/form", {
       id: link.uuid,
-      message: "Redirecting...",
+      message: "正在跳转...",
     });
     return;
   }
@@ -622,13 +622,13 @@ async function stats(req, res) {
       res.status(200).send("");
       return;
     }
-    throw new CustomError("Link could not be found.");
+    throw new CustomError("找不到该链接。");
   }
 
   const stats = await query.visit.find({ link_id: link.id }, link.visit_count);
 
   if (!stats) {
-    throw new CustomError("Could not get the short link stats. Try again later.");
+    throw new CustomError("无法获取短链接统计数据，请稍后重试。");
   }
 
   if (req.isHTML) {

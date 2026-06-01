@@ -1,33 +1,33 @@
 <h2>
-  Custom domain
+  自定义域名
 </h2>
 <p>
-  You can set a custom domain for your short URLs, so instead of
-  <b>{{default_domain}}/shorturl</b> you can have
-  <b>yoursite.com/shorturl.</b>
+  你可以为短链接设置自定义域名，这样你就可以用
+  <b>yoursite.com/shorturl</b> 代替
+  <b>{{default_domain}}/shorturl</b>。
 </p>
 
 {{#if server_cname_address}}
   <p>
-    Point your domain's A record to 
+    将你的域名的 A 记录指向
     {{#if server_ip_address}}
       <b>{{server_ip_address}}</b>
     {{else}}
-      our <b>IP address</b>
-    {{/if}} or your subdomain's CNAME record to
-    <b>{{server_cname_address}}</b>. If you're using <b>Cloudflare</b>,
-    make sure to use <b>DNS only</b> mode for your subdomain.
+      我们的 <b>IP 地址</b>
+    {{/if}}，或者将你的子域名的 CNAME 记录指向
+    <b>{{server_cname_address}}</b>。如果你使用 <b>Cloudflare</b>，
+    请确保对你的子域名使用 <b>仅 DNS</b> 模式。
   </p>
-  <p>Then, add the domain via the form below:</p>
+  <p>然后，通过下面的表单添加域名：</p>
 {{else}}
   <p>
-    Point your domain's A record to 
+    将你的域名的 A 记录指向
     {{#if server_ip_address}}
       <b>{{server_ip_address}}</b>
     {{else}}
-      our <b>IP address</b>
-    {{/if}} 
-    then add the domain via the form below:
+      我们的 <b>IP 地址</b>
+    {{/if}}
+    然后通过下面的表单添加域名：
   </p>
 {{/if}}
 
@@ -43,7 +43,7 @@
     hx-on::after-request="event.srcElement.classList.add('hidden')"
   >
     <span>{{> icons/plus}}</span>
-    Add domain
+    添加域名
   </button>
   {{> icons/spinner}}
   <div id="domain-form-wrapper">

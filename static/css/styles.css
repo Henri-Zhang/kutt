@@ -6,41 +6,41 @@
 }
 
 :root {
-  --bg-color: hsl(206, 12%, 95%);
-  --text-color: hsl(200, 35%, 25%);
-  --color-primary: hsl(207, 90%, 54%);
-  --outline-color: hsl(188, 100%, 54%);
+  --bg-color: hsl(152, 15%, 96%);
+  --text-color: hsl(155, 35%, 25%);
+  --color-primary: hsl(152, 68%, 42%);
+  --outline-color: hsl(155, 80%, 45%);
   --button-bg: linear-gradient(to right, #e0e0e0, #bdbdbd);
   --button-bg-box-shadow-color: rgba(160, 160, 160, 0.5);
-  --button-bg-primary: linear-gradient(to right, hsl(207, 90%, 61%), hsl(218, 100%, 58%));
-  --button-bg-primary-box-shadow-color: hsla(207, 90%, 61%, 0.5);
-  --button-bg-secondary: linear-gradient(to right, hsl(262, 47%, 55%), hsl(265, 100%, 46%));
-  --button-bg-secondary-box-shadow-color: hsla(258, 58%, 42%, 0.5);
+  --button-bg-primary: linear-gradient(to right, hsl(152, 65%, 50%), hsl(160, 72%, 38%));
+  --button-bg-primary-box-shadow-color: hsla(152, 65%, 50%, 0.5);
+  --button-bg-secondary: linear-gradient(to right, hsl(170, 50%, 42%), hsl(175, 60%, 32%));
+  --button-bg-secondary-box-shadow-color: hsla(170, 50%, 42%, 0.5);
   --button-bg-danger: linear-gradient(to right, hsl(0, 84%, 58%), hsl(0, 78%, 50%));
   --button-bg-danger-box-shadow-color: hsla(0, 58%, 42%, 0.5);
   --button-bg-success: linear-gradient(to right, hsl(130, 58%, 45%), hsl(130, 67%, 45%));
   --button-bg-success-box-shadow-color: hsla(128, 80%, 48%, 0.5);
-  --button-action-shadow-color: hsla(200, 15%, 60%, 0.12);
-  --underline-color: hsl(200, 35%, 65%);
-  --secondary-text-color: hsl(200, 14%, 60%);
-  --send-icon-hover-color: hsl(262, 52%, 47%);
-  --send-spinner-icon-color: hsl(200, 15%, 70%);
+  --button-action-shadow-color: hsla(155, 15%, 60%, 0.12);
+  --underline-color: hsl(155, 35%, 65%);
+  --secondary-text-color: hsl(155, 14%, 58%);
+  --send-icon-hover-color: hsl(152, 55%, 38%);
+  --send-spinner-icon-color: hsl(155, 15%, 70%);
   --success-icon-color: hsl(144, 40%, 57%);
   --error-icon-color: hsl(0, 86%, 63%);
-  --copy-icon-color: hsl(144, 40%, 57%);
-  --copy-icon-bg-color: hsl(144, 100%, 96%);
-  --copy-icon-shadow-color: hsla(200, 15%, 60%, 0.12);
-  --focus-outline-color: hsla(207, 90%, 61%, 0.5);
-  --checkbox-bg-color: hsl(262, 47%, 63%);
-  --input-shadow-color: hsla(200, 15%, 70%, 0.2);
-  --input-hover-shadow-color: hsla(200, 15%, 70%, 0.4);
-  --input-label-color: hsl(200, 35%, 25%);
-  --table-bg-color: hsl(200, 12%, 95%);
-  --table-shadow-color: hsla(200, 20%, 70%, 0.3);
-  --table-tr-border-color: hsl(200, 14%, 94%);
-  --table-tr-hover-bg-color: hsl(200, 14%, 98%);
-  --table-head-tr-border-color: hsl(200, 14%, 90%);
-  --table-status-gray-bg-color: hsl(200, 12%, 95%);
+  --copy-icon-color: hsl(152, 45%, 48%);
+  --copy-icon-bg-color: hsl(152, 80%, 96%);
+  --copy-icon-shadow-color: hsla(155, 15%, 60%, 0.12);
+  --focus-outline-color: hsla(152, 65%, 50%, 0.5);
+  --checkbox-bg-color: hsl(152, 55%, 45%);
+  --input-shadow-color: hsla(155, 15%, 70%, 0.2);
+  --input-hover-shadow-color: hsla(155, 25%, 65%, 0.35);
+  --input-label-color: hsl(155, 35%, 25%);
+  --table-bg-color: hsl(155, 12%, 96%);
+  --table-shadow-color: hsla(155, 20%, 70%, 0.25);
+  --table-tr-border-color: hsl(155, 14%, 94%);
+  --table-tr-hover-bg-color: hsl(152, 25%, 98%);
+  --table-head-tr-border-color: hsl(155, 14%, 91%);
+  --table-status-gray-bg-color: hsl(155, 12%, 96%);
   --keyframe-slidey-offset: 0;
 }
 
@@ -93,7 +93,7 @@ hr {
   height: 2px;
   outline: none;
   border: none;
-  background-color: hsl(200, 20%, 92%);
+  background-color: hsl(155, 20%, 92%);
 }
 
 span.bold { font-weight: bold; }
@@ -296,13 +296,13 @@ button.action.qrcode svg {
 
 a.button.action.stats,
 button.action.stats {
-  background: hsl(260, 100%, 96%);
+  background: hsl(152, 80%, 96%);
 }
 
 a.button.action.stats svg,
 button.action.stats svg {
   stroke-width: 2.5;
-  stroke: hsl(260, 100%, 69%);
+  stroke: hsl(152, 65%, 45%);
 }
 
 a.button.action.ban,
@@ -1935,18 +1935,18 @@ p.last-update {
 svg.map { width: 100%; }
 
 svg.map path {
-  fill: hsl(200, 15%, 92%);
+  fill: hsl(155, 15%, 93%);
   stroke: #fff;
   transition: all 0.1s ease-in-out;
 }
 
-svg.map path.color-1 { fill: hsl(261, 46%, 90%); }
-svg.map path.color-2 { fill: hsl(261, 46%, 86%); }
-svg.map path.color-3 { fill: hsl(261, 46%, 82%); }
-svg.map path.color-4 { fill: hsl(261, 46%, 76%); }
-svg.map path.color-5 { fill: hsl(261, 46%, 72%); }
-svg.map path.color-6 { fill: hsl(261, 46%, 68%); }
-svg.map path.active { stroke: hsl(261, 46%, 50%); stroke-width: 1.5; }
+svg.map path.color-1 { fill: hsl(152, 46%, 91%); }
+svg.map path.color-2 { fill: hsl(152, 46%, 86%); }
+svg.map path.color-3 { fill: hsl(152, 46%, 81%); }
+svg.map path.color-4 { fill: hsl(152, 46%, 75%); }
+svg.map path.color-5 { fill: hsl(152, 46%, 70%); }
+svg.map path.color-6 { fill: hsl(152, 46%, 64%); }
+svg.map path.active { stroke: hsl(152, 46%, 45%); stroke-width: 1.5; }
 
 #map-tooltip {
   position: fixed;

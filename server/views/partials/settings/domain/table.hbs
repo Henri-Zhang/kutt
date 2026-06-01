@@ -1,8 +1,8 @@
 <table id="domains-table" hx-swap-oob="true">
   <thead>
     <tr>
-      <th class="domain">Domain</th>
-      <th class="homepage">Homepage</th>
+      <th class="domain">域名</th>
+      <th class="homepage">主页</th>
       <th class="actions"></th>
     </tr>
   </thead>
@@ -17,13 +17,13 @@
             {{homepage}}
           </td>
           <td class="actions">
-            <button 
+            <button
               type="button"
-              class="action delete" 
-              hx-on:click='openDialog("domain-dialog")' 
-              hx-get="/confirm-domain-delete" 
-              hx-target="#domain-dialog .content-wrapper" 
-              hx-indicator="#domain-dialog" 
+              class="action delete"
+              hx-on:click='openDialog("domain-dialog")'
+              hx-get="/confirm-domain-delete"
+              hx-target="#domain-dialog .content-wrapper"
+              hx-indicator="#domain-dialog"
               hx-vals='{"id":"{{id}}"}'
             >
               {{> icons/trash}}
@@ -34,7 +34,7 @@
     {{else}}
       <tr>
         <td class="no-entry">
-          No domains yet.
+          暂无域名。
         </td>
       </tr>
     {{/if}}

@@ -5,27 +5,27 @@
   hx-ext="path-params"
   hx-vals='{"id":"{{id}}"}'
   hx-swap="outerHTML"
-> 
+>
   {{#if message}}
     <p class="success">{{message}}</p>
   {{else}}
     <div class="inputs-wrapper">
       <label>
-        Password:
-        <input 
-          type="password" 
-          id="protected-link-password" 
-          name="password" 
-          placeholder="Password..."
+        密码：
+        <input
+          type="password"
+          id="protected-link-password"
+          name="password"
+          placeholder="请输入密码..."
           hx-preserve="true"
           class="{{#if errors.link}}error{{/if}}"
-          required 
+          required
         />
       </label>
       <button type="submit" class="primary">
         <span>{{> icons/spinner}}</span>
         <span>{{> icons/key}}</span>
-        Unlock & Go
+        解锁并访问
       </button>
     </div>
     {{#if error}}<p class="error">{{error}}</p>{{/if}}

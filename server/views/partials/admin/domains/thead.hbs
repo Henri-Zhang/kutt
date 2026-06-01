@@ -4,74 +4,74 @@
     <th class="filters">
       <div>
         <div class="search-input-wrapper">
-          <input 
-            id="search" 
-            name="search" 
-            type="text" 
-            placeholder="Search domain..." 
-            class="table-input search admin" 
-            hx-on:input="onSearchChange(event)" 
+          <input
+            id="search"
+            name="search"
+            type="text"
+            placeholder="搜索域名..."
+            class="table-input search admin"
+            hx-on:input="onSearchChange(event)"
             hx-on:keyup="resetTableNav()"
             value="{{query.search}}"
           />
-          <button 
-            type="button" 
-            aria-label="Clear search" 
-            class="clear" 
+          <button
+            type="button"
+            aria-label="清除搜索"
+            class="clear"
             onclick="clearSeachInput(event)"
           >
             {{> icons/x}}
           </button>
         </div>
         <div class="search-input-wrapper">
-          <input 
-            id="search_user" 
-            name="user" 
-            type="text" 
-            placeholder="Search user..." 
-            class="table-input search admin" 
-            hx-on:input="onSearchChange(event)" 
+          <input
+            id="search_user"
+            name="user"
+            type="text"
+            placeholder="搜索用户..."
+            class="table-input search admin"
+            hx-on:input="onSearchChange(event)"
             hx-on:keyup="resetTableNav()"
             value="{{query.user}}"
           />
-          <button 
-            type="button" 
-            aria-label="Clear user" 
-            class="clear" 
+          <button
+            type="button"
+            aria-label="清除用户"
+            class="clear"
             onclick="clearSeachInput(event)"
           >
             {{> icons/x}}
           </button>
         </div>
         <select id="domains-select-banned" name="banned" class="table-input ban" hx-on:change="resetTableNav()">
-          <option value="" selected>Banned...</option>
-          <option value="true">Banned</option>
-          <option value="false">Not banned</option>
+          <option value="" selected>封禁状态...</option>
+          <option value="true">已封禁</option>
+          <option value="false">未封禁</option>
         </select>
       </div>
       <div>
         <select id="domains-select-links" name="links" class="table-input links" hx-on:change="resetTableNav()">
-          <option value="" selected>Links...</option>
-          <option value="true" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>With links</option>
-          <option value="false" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>No links</option>
+          <option value="" selected>链接...</option>
+          <option value="true" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>有链接</option>
+          <option value="false" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>无链接</option>
         </select>
         <select id="domains-select-owner" name="owner" class="table-input owner" hx-on:change="resetTableNav()">
-          <option value="" selected>Owner...</option>
-          <option value="true" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>With owner</option>
-          <option value="false" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>No owner</option>
+          <option value="" selected>所有者...</option>
+          <option value="true" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>有所有者</option>
+          <option value="false" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>无所有者</option>
         </select>
         <input id="total" name="total" type="hidden" value="{{total}}" />
         <input id="limit" name="limit" type="hidden" value="10" />
         <input id="skip" name="skip" type="hidden" value="0" />
-        <button 
+        <button
           class="table primary"
-          hx-on:click='openDialog("admin-table-dialog")' 
-          hx-get="/add-domain" 
-          hx-target="#admin-table-dialog .content-wrapper" 
+          hx-on:click='openDialog("admin-table-dialog")'
+          hx-get="/add-domain"
+          hx-target="#admin-table-dialog .content-wrapper"
           hx-indicator="#admin-table-dialog"
         >
           <span>{{> icons/plus}}</span>
-          Add domain
+          添加域名
         </button>
       </div>
     </th>
@@ -79,10 +79,10 @@
   </tr>
   <tr>
     <th class="domains-id">ID</th>
-    <th class="domains-address">Address</th>
-    <th class="domains-homepage">Homepage</th>
-    <th class="domains-created-at">Created at</th>
-    <th class="domains-links-count">Total links</th>
+    <th class="domains-address">地址</th>
+    <th class="domains-homepage">主页</th>
+    <th class="domains-created-at">创建时间</th>
+    <th class="domains-links-count">链接总数</th>
     <th class="domains-actions"></th>
   </tr>
 </thead>

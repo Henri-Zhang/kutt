@@ -54,7 +54,7 @@ async function verification(user) {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.email,
-    subject: "Verify your account",
+    subject: "验证你的账号",
     text: verifyMailText
       .replace(/{{verification}}/gim, user.verification_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
@@ -66,7 +66,7 @@ async function verification(user) {
   });
 
   if (!mail.accepted.length) {
-    throw new CustomError("Couldn't send verification email. Try again later.");
+    throw new CustomError("无法发送验证邮件，请稍后重试。");
   }
 }
 
@@ -78,7 +78,7 @@ async function changeEmail(user) {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.change_email_address,
-    subject: "Verify your new email address",
+    subject: "验证你的新邮箱地址",
     text: changeEmailText
       .replace(/{{verification}}/gim, user.change_email_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
@@ -90,7 +90,7 @@ async function changeEmail(user) {
   });
   
   if (!mail.accepted.length) {
-    throw new CustomError("Couldn't send verification email. Try again later.");
+    throw new CustomError("无法发送验证邮件，请稍后重试。");
   }
 }
 
@@ -102,7 +102,7 @@ async function resetPasswordToken(user) {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.email,
-    subject: "Reset your password",
+    subject: "重置你的密码",
     text: resetMailText
       .replace(/{{resetpassword}}/gm, user.reset_password_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN),
@@ -113,7 +113,7 @@ async function resetPasswordToken(user) {
 
   if (!mail.accepted.length) {
     throw new CustomError(
-      "Couldn't send reset password email. Try again later."
+      "无法发送重置密码邮件，请稍后重试。"
     );
   }
 }
@@ -126,13 +126,13 @@ async function sendReportEmail(link) {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: env.REPORT_EMAIL,
-    subject: "[REPORT]",
+    subject: "[举报]",
     text: link,
     html: link
   });
 
   if (!mail.accepted.length) {
-    throw new CustomError("Couldn't submit the report. Try again later.");
+    throw new CustomError("无法提交举报，请稍后重试。");
   }
 }
 
