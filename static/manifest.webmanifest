@@ -4,7 +4,7 @@
   "theme_color": "#2da06b",
   "background_color": "#f3faf6",
   "display": "standalone",
-  "description": "葱花短链是一个免费开源的短链接服务，支持自定义域名和统计功能。",
+  "description": "葱花短链是一个的短链接服务，支持自定义域名和统计功能。",
   "Scope": "/",
   "start_url": "/",
   "icons": [
